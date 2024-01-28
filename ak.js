@@ -70,20 +70,21 @@ function handleTouchMove(event) {
     let dy = touchEndY - touchStartY;
 
     if (Math.abs(dx) > Math.abs(dy)) {
-        if (dx > 0) {
+        if (dx > 0 && d!="LEFT") {
             // Right swipe
             d = "RIGHT";
         } else {
             // Left swipe
-            d = "LEFT";
+			if (d!="RIGHT")  d = "LEFT";
+           
         }
     } else {
-        if (dy > 0) {
+        if (dy > 0 && d!="UP") {
             // Down swipe
             d = "DOWN";
         } else {
             // Up swipe
-            d = "UP";
+            if (d != "DOWN") d = "UP";
         }
     }
 
