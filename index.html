@@ -6,13 +6,15 @@
     <title>Snake Game</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-       
+       h1{
+      
+       }
     </style>
 </head>
 <body>
-
-
-    <div class="flex justify-center">
+<h1 class="text-center">play how fast you can</h1>
+  
+    <div class="flex justify-center ">
         <canvas id="gameCanvas" height="400" width="300" class="border-2 border-blue-200
         rounded-sm mt-4 ring-2 ring-slate-500" ></canvas>
     
@@ -20,12 +22,13 @@
 
     </div>
 
-    <div class="flex justify-center space-x-2 mt-4">
-        <button class="b1 bg-blue-500 text-white font-bold p-2 rounded-full">Increase</button>
-        <button class="b2 bg-blue-500 text-white font-bold p-2 rounded-full">decrease</button>
-    </div>
+    
 
-    <p class="">your score:  </p>
+    <h1 class="text-center">your score: <span></span>  </h1>
+
+
+    <h2 class="hidden text-center bg-blue-500 mx-auto w-fit p-1 font-bold text-white rounded-md border-2 border-slate-400">new game</h2>
+
 
   <script src="ak.js"></script>
 </body>

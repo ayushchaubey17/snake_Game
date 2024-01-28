@@ -15,6 +15,7 @@
         
         const box = 20;
         let score =0;
+		let a1=5;
         
 
 	
@@ -101,7 +102,11 @@ function handleTouchMove(event) {
 
 
 
-
+let bg = "aliceblue";
+let c1 ="black";
+let c2 ="gray";
+let f ="blue";
+let b ="yellow";
 
 
 
@@ -128,23 +133,23 @@ function handleTouchMove(event) {
             }
             return false;
         }
-        
+        let h2 = document.querySelector('h2');
         function draw() {
 
             ctx.clearRect(0, 0,300, 400);
 
-            ctx.fillStyle = "aliceblue";
+            ctx.fillStyle = bg;
             ctx.fillRect(0,0,300,400);
             
         
             for (let i = 0; i < snake.length; i++) {
-                ctx.fillStyle = (i === 0) ? "black" : "gray";
+                ctx.fillStyle = (i === 0) ? c1 : c2;
                 ctx.fillRect(snake[i].x, snake[i].y, box, box);
-                ctx.strokeStyle = "brown";
+                ctx.strokeStyle = b;
                 ctx.strokeRect(snake[i].x, snake[i].y, box, box);
             }
         
-            ctx.fillStyle = "red";
+            ctx.fillStyle = f;
             ctx.fillRect(food.x, food.y, 20,20);
         
             let snakeX = snake[0].x;
@@ -154,9 +159,9 @@ function handleTouchMove(event) {
             if (d === "UP") snakeY -=  box;
             if (d === "RIGHT") snakeX += box;
             if (d === "DOWN") snakeY += box;
-			const p = document.querySelector('p');
+			const p = document.querySelector('span');
             if (snakeX == food.x && snakeY == food.y) {
-                score +=5;
+                score += a1;
 				
 	           p.innerHTML = score;
                 food = {
@@ -174,10 +179,51 @@ function handleTouchMove(event) {
         
             if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
                 clearInterval(game);
+				h2.classList.remove("hidden");
+				
             }
         
             snake.unshift(newHead);
         }
         
-        let game = setInterval(draw, 200);
+
+
+let x= 200;
+        let game = setInterval(draw,x );
+
+let round = 1;
+h2.addEventListener('click',()=>{
+	round++;
+	h2.classList.add('hidden');
+	snake = [];
+        snake[0] = { 
+            x: 1 * box, 
+            y: 1 * box 
+        };
+
+		if(d == "LEFT" || d =="UP")d="RIGHT"
+        if(round==2){
+			bg = "silver";
+			c1="lightGray"
+			c2 ="white";
+			f="green";
+		}
+		
+		if(round==2){
+			bg = "silver";
+			c ="white";
+			f="green";
+		}
+
+		if(round==3){
+			bg = "steelblue";
+			c ="white";
+			f="green";
+		}
+
+		x-=30;
+	game = setInterval(draw, x);
+})
+
+
    
