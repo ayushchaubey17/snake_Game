@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snake Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/510/fabric.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
        h1{
@@ -12,22 +14,39 @@
     </style>
 </head>
 <body>
-<h1 class="text-center">play how fast you can</h1>
+<h1 class="text-center bg-zinc-400 text-white text-2xl font-bold p-2 rounded-b-lg">play fast as you can?</h1>
   
-    <div class="flex justify-center ">
+    <div class="flex justify-center nav">
         <canvas id="gameCanvas" height="400" width="300" class="border-2 border-blue-200
         rounded-sm mt-4 ring-2 ring-slate-500" ></canvas>
-    
 
 
     </div>
 
+
+
+<div class="flex justify-center space-x-14 font-bold">
+
+   <h1 class="">round: <span class="s1 text-blue-500">1</span></h1> 
+<h1 class="text-center">your score: <span class="s2 text-blue-500">0</span>  </h1>
+
+</div>
     
 
-    <h1 class="text-center">your score: <span></span>  </h1>
+    <h2 class="hidden text-center bg-blue-500 mx-auto w-fit p-1 font-bold text-white rounded-md border-2 border-slate-400">Next Round</h2>
 
 
-    <h2 class="hidden text-center bg-blue-500 mx-auto w-fit p-1 font-bold text-white rounded-md border-2 border-slate-400">new game</h2>
+
+<div class="sc flex-col justify-center mx-auto font-bold mx-auto ml-4">
+
+</div>
+
+
+<div class="flex justify-center">
+    <h2 class="hidden b2 text-center bg-blue-500 mx-auto w-fit p-1 font-bold text-white rounded-md border-2 border-slate-400">Play again</h2>
+
+
+</div>
 
 
   <script src="ak.js"></script>

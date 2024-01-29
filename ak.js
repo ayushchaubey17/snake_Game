@@ -5,16 +5,20 @@
 
 
 
-
+let eat = new Audio('eat.mp3');
+let mov = new Audio('mov.mp3');
+let go = new Audio('go.mp3');
 
 
 
 
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
-        
+
+    
         const box = 20;
         let score =0;
+		let arr = [];
 		let a1=5;
         
 
@@ -33,7 +37,6 @@
         };
         
         let d;
-
 
 
 
@@ -110,7 +113,8 @@ let b ="yellow";
 
 
 
-        
+const s2 = document.querySelector('.s2');
+			 
         document.addEventListener("keydown", direction);
         
         function direction(event) {
@@ -159,11 +163,13 @@ let b ="yellow";
             if (d === "UP") snakeY -=  box;
             if (d === "RIGHT") snakeX += box;
             if (d === "DOWN") snakeY += box;
-			const p = document.querySelector('span');
+			
             if (snakeX == food.x && snakeY == food.y) {
                 score += a1;
+				eat.play();
+				mov.play();
 				
-	           p.innerHTML = score;
+	           s2.innerHTML = score;
                 food = {
                     x: Math.floor(Math.random() * 15) * box,
                     y: Math.floor(Math.random() * 20) * box
@@ -178,7 +184,11 @@ let b ="yellow";
             };
         
             if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
-                clearInterval(game);
+                go.play();
+				mov.pause();
+				clearInterval(game);
+				arr.push(score);
+				score =0;
 				h2.classList.remove("hidden");
 				
             }
@@ -186,14 +196,45 @@ let b ="yellow";
             snake.unshift(newHead);
         }
         
+		let b2 = document.querySelector('.b2');
 
+		b2.addEventListener('click',()=>{
+			location.reload();
+		})
 
-let x= 200;
+		let show = ()=>{
+
+			let nav = document.querySelector('.nav');
+			nav.classList.add("hidden");
+			b2.classList.remove("hidden");
+			let sc = document.querySelector('.sc');
+		
+		for( i =0;i<arr.length;i++){
+		 
+			let li = document.createElement('li');
+			li.innerHTML = `round ${i+1} score:: ${arr[i]}`;
+		
+			sc.appendChild(li);
+		
+		
+		}
+		
+		
+		}
+		   
+
+          let x= 200;
         let game = setInterval(draw,x );
 
 let round = 1;
+const s1 = document.querySelector('.s1');
 h2.addEventListener('click',()=>{
+	
+	mov.play();
 	round++;
+	s1.innerHTML = round;
+	s2.innerHTML = score;
+	
 	h2.classList.add('hidden');
 	snake = [];
         snake[0] = { 
@@ -203,27 +244,41 @@ h2.addEventListener('click',()=>{
 
 		if(d == "LEFT" || d =="UP")d="RIGHT"
         if(round==2){
+			a1=8;
 			bg = "silver";
 			c1="lightGray"
 			c2 ="white";
 			f="green";
 		}
 		
-		if(round==2){
+		if(round==3){
+			a1= 15;
 			bg = "silver";
 			c ="white";
 			f="green";
 		}
 
-		if(round==3){
+		if(round==4){
+			a1 = 25;
 			bg = "steelblue";
 			c ="white";
 			f="green";
 		}
 
-		x-=30;
+		if (round ==5) {
+			a1 = 40;
+		}
+
+		if(round == 6){
+			a1= 80;
+			clearInterval(game);
+			mov.pause();
+			show();
+			return;
+		}
+
+		x-=29;
 	game = setInterval(draw, x);
 })
 
 
-   
